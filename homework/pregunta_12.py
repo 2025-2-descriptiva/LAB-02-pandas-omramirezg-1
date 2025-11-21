@@ -5,8 +5,27 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 librerias de pandas para resolver las preguntas.
 """
 
+import pandas as pd
 
 def pregunta_12():
+    ruta = "files/input/tbl2.tsv"
+    tabla = pd.read_csv(ruta, sep="\t")
+
+    # Construir la columna c5 a partir de c5a y c5b
+    tabla["c5"] = tabla["c5a"].astype(str) + ":" + tabla["c5b"].astype(str)
+
+    def unir_ordenado(serie):
+        valores = sorted(serie.tolist())
+        return ",".join(valores)
+
+    resultado = (
+        tabla
+        .groupby("c0", as_index=False)["c5"]
+        .agg(unir_ordenado)
+    )
+
+    return resultado
+
     """
     Construya una tabla que contenga `c0` y una lista separada por ','
     de los valores de la columna `c5a`  y `c5b` (unidos por ':') de la

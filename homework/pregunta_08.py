@@ -5,8 +5,13 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 librerias de pandas para resolver las preguntas.
 """
 
+import pandas as pd
 
 def pregunta_08():
+    data_frame = pd.read_csv("files/input/tbl0.tsv", sep='\t')
+    data_frame['suma'] = data_frame['c0'] + data_frame['c2']
+    return data_frame
+
     """
     Agregue una columna llamada `suma` con la suma de `c0` y `c2` al
     data frame que contiene el archivo `tbl0.tsv`.

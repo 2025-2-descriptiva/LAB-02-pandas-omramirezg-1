@@ -6,7 +6,12 @@ librerias de pandas para resolver las preguntas.
 """
 
 
+import pandas as pd
+
 def pregunta_05():
+    data_frame= pd.read_csv("files/input/tbl0.tsv", sep='\t')
+    return data_frame.groupby('c1')['c2'].max().sort_index()
+    
     """
     Calcule el valor máximo de `c2` por cada letra en la columna `c1` del
     archivo `tbl0.tsv`.
